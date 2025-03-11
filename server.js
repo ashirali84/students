@@ -65,7 +65,7 @@ app.post('/login',
                 errors: [{ msg: 'Invalid email or password' }],
             })
         }
-        const isMatch = await userModel({
+        const isMatch = await userModel.findOne({
             password:password
         })
         if (!isMatch) {
@@ -77,7 +77,7 @@ app.post('/login',
             email,
             password
         });
-        res.send("logged in")
+        res.render('home')
     })
 
 
