@@ -6,6 +6,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 const connectDB = require('./config/db')
 connectDB()
+const bcrypt = require('bcrypt')
 const userModel = require('./models/user.model')
 
 
@@ -17,6 +18,10 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
+
+
+
+// signup validations 
 app.post('/',
     body('name').trim().isLength(3),
     body('email').trim().isEmail().isLength(10),
@@ -30,10 +35,19 @@ app.post('/',
             })
         }
         const { name, email, password } = req.body
+
+        // password hashing....
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        // email validation... for existing 
+        const Exist_email = await userModel.findOne({ email: email })
+        if (Exist_email) {
+            return res.status(400).json({ message: "Email already exist" })
+        }
         await userModel.create({
             name: name,
             email: email,
-            password: password
+            password: hashedPassword
         })
         console.log({
             name,
@@ -45,6 +59,8 @@ app.post('/',
 
     })
 
+
+// login validations
 app.post('/login',
     body('email').trim().isEmail().isLength(10),
     body('password').trim().isLength(5),
@@ -58,7 +74,8 @@ app.post('/login',
         }
 
         const { email, password } = req.body
-        const user = userModel.findOne({
+        
+        const user =await userModel.findOne({
             email: email
         })
         if (!user) {
@@ -66,9 +83,7 @@ app.post('/login',
                 errors: [{ msg: 'Invalid email or password' }],
             })
         }
-        const isMatch = await userModel.findOne({
-            password: password
-        })
+        const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) {
             return res.status(400).json({
                 errors: [{ msg: 'Invalid email or password' }],
