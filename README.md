@@ -1,4 +1,6 @@
-﻿# Modern-landing-page [ Credit : Abhishek , Priyanka ]
+﻿# Modern-landing-page [ Credit : Abhishek , Priyanka, Shahid ]
+# Frontend team [ Priyanka , Anurag ]
+# Backend team [ Abhishekh , Shahid ]
 
 > [!tip]
 > ENJOY THE CODE 😊
