@@ -42,19 +42,17 @@
         <p>You are successfully logged in.</p>
         <button class="btn" onclick="logout()">Logout</button>
     </div>
-    
-    <!-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const user = localStorage.getItem("user");
-            if (!user) {
-                window.location.href = "login.html";
-            }
-        });
 
-        function logout() {
+    <script>
+        alert("You have successfully logged in.");
+        function logout(){
             localStorage.removeItem("user");
-            window.location.href = "login.";
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1000);
+            alert("You have successfully logged out.");
         }
-    </script> -->
+    </script>
+    
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿# Modern-landing-page [ Credit : Abhishek , Priyanka, Shahid , Anurag]
+﻿# Modern-landing-page [ Credit : Abhishek , Priyanka, Shahid , Anurag ]
 ## Frontend team [ Priyanka , Anurag ]
 ## Backend team [ Abhishek , Shahid ]
 

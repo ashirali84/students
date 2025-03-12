@@ -40,7 +40,8 @@ app.post('/',
             email,
             password
         });
-        res.send("Submited")
+
+        res.render('home')
 
     })
 
@@ -77,6 +78,7 @@ app.post('/login',
             email,
             password
         });
+
         res.render('home')
     })
 
